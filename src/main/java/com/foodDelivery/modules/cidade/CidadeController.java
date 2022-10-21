@@ -32,7 +32,7 @@ public class CidadeController {
 		}
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getById(@PathVariable("id") Long id) {
 		try {
 			return ResponseEntity.ok(cidadeService.getById(id));
@@ -50,7 +50,7 @@ public class CidadeController {
 		}
 	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping(path = "/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody CidadeDTO cidadeDTO) {
 		try {
 			return ResponseEntity.ok(cidadeService.update(id, cidadeDTO));
@@ -59,7 +59,7 @@ public class CidadeController {
 		}
 	}
 
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		try {
 			cidadeService.delete(id);

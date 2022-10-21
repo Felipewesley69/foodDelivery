@@ -33,7 +33,7 @@ public class CozinhaController {
 		}
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping(path = "/{id}")
 	public ResponseEntity<Cozinha> getById(@PathVariable("id") Long id) {
 		try {
 			return ResponseEntity.ok(cozinhaService.getById(id));
@@ -51,7 +51,7 @@ public class CozinhaController {
 		}
 	}
 
-	@PutMapping(value = "/{id}")
+	@PutMapping(path = "/{id}")
 	public ResponseEntity<Cozinha> update(@PathVariable("id") Long id, @RequestBody Cozinha cozinha) {
 		try {
 			return ResponseEntity.ok(cozinhaService.update(id, cozinha));
@@ -60,7 +60,7 @@ public class CozinhaController {
 		}
 	}
 
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		try {
 			cozinhaService.delete(id);
