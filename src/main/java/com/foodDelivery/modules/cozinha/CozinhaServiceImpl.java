@@ -43,4 +43,9 @@ public class CozinhaServiceImpl implements CozinhaService {
 		cozinhaRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Cozinha> findByNome(String nome) {
+		return cozinhaRepository.findByNomeContaining(nome);
+	}
+
 }

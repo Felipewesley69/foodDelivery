@@ -1,7 +1,5 @@
 package com.foodDelivery.modules.restaurante;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.foodDelivery.modules.cozinha.CozinhaRepository;
@@ -15,11 +13,6 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public RestauranteServiceImpl(RestauranteRepository restauranteRepository, CozinhaRepository cozinhaRepository) {
 		this.restauranteRepository = restauranteRepository;
 		this.cozinhaRepository = cozinhaRepository;
-	}
-
-	@Override
-	public List<Restaurante> getAll() {
-		return restauranteRepository.findAll();
 	}
 
 	@Override

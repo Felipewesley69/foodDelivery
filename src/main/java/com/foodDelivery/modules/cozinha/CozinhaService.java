@@ -15,5 +15,7 @@ public interface CozinhaService {
 	public Cozinha update(Long id, Cozinha cozinha);
 	
 	public void delete(Long id);
+
+	public List<Cozinha> findByNome(String nome);
 	
 }

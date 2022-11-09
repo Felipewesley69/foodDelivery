@@ -1,12 +1,6 @@
 package com.foodDelivery.modules.restaurante;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-
 public interface RestauranteService {
-	
-	public List<Restaurante> getAll();
 	
 	public Restaurante getById(Long id);
 	

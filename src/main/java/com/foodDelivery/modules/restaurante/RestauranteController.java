@@ -1,5 +1,6 @@
 package com.foodDelivery.modules.restaurante;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,15 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestauranteController {
 
 	private RestauranteService restauranteService;
+	private RestauranteRepository restauranteRepository;
 
-	public RestauranteController(RestauranteService restauranteService) {
+	public RestauranteController(RestauranteService restauranteService, RestauranteRepository restauranteRepository) {
+		super();
 		this.restauranteService = restauranteService;
+		this.restauranteRepository = restauranteRepository;
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Restaurante>> getAll() {
+	public ResponseEntity<List<Restaurante>> getAll(
+		@RequestParam(required = false) String nome,
+		@RequestParam(required = false) BigDecimal taxaFreteInicial,
+		@RequestParam(required = false) BigDecimal taxaFreteFinal
+	) {
 		try {
-			return ResponseEntity.ok(restauranteService.getAll());
+			return ResponseEntity.ok(restauranteRepository.buscarRestaurantes(nome, taxaFreteInicial, taxaFreteFinal));
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}

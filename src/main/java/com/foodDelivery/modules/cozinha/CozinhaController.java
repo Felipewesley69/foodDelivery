@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,6 +22,7 @@ public class CozinhaController {
 	private CozinhaService cozinhaService;
 
 	public CozinhaController(CozinhaService cozinhaService) {
+		super();
 		this.cozinhaService = cozinhaService;
 	}
 
@@ -32,9 +34,19 @@ public class CozinhaController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
+	@GetMapping(path = "/nome")
+	public ResponseEntity<List<Cozinha>> findByName(@RequestParam(required = false) String nome) {
+		try {
+			return ResponseEntity.ok(cozinhaService.findByNome(nome));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Cozinha> getById(@PathVariable("id") Long id) {
+	public ResponseEntity<Cozinha> getById(@PathVariable Long id) {
 		try {
 			return ResponseEntity.ok(cozinhaService.getById(id));
 		} catch (Exception e) {
@@ -52,7 +64,7 @@ public class CozinhaController {
 	}
 
 	@PutMapping(path = "/{id}")
-	public ResponseEntity<Cozinha> update(@PathVariable("id") Long id, @RequestBody Cozinha cozinha) {
+	public ResponseEntity<Cozinha> update(@PathVariable Long id, @RequestBody Cozinha cozinha) {
 		try {
 			return ResponseEntity.ok(cozinhaService.update(id, cozinha));
 		} catch (Exception e) {
@@ -61,7 +73,7 @@ public class CozinhaController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {
 		try {
 			cozinhaService.delete(id);
 			return ResponseEntity.ok(null);
