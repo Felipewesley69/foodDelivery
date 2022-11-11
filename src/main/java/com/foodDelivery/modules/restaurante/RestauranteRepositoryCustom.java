@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RestauranteRepositoryCustom {
 	
-	public List<Restaurante> buscarRestaurantes(String nome, BigDecimal taxaInicial, BigDecimal taxaFinal);
+	public List<Restaurante> buscarRestaurantes(String nome, BigDecimal taxaInicial, BigDecimal taxaFinal, Long idCozinha);
 
 }

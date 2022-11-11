@@ -32,10 +32,11 @@ public class RestauranteController {
 	public ResponseEntity<List<Restaurante>> getAll(
 		@RequestParam(required = false) String nome,
 		@RequestParam(required = false) BigDecimal taxaFreteInicial,
-		@RequestParam(required = false) BigDecimal taxaFreteFinal
+		@RequestParam(required = false) BigDecimal taxaFreteFinal,
+		@RequestParam(required = false) Long idCozinha
 	) {
 		try {
-			return ResponseEntity.ok(restauranteRepository.buscarRestaurantes(nome, taxaFreteInicial, taxaFreteFinal));
+			return ResponseEntity.ok(restauranteRepository.buscarRestaurantes(nome, taxaFreteInicial, taxaFreteFinal, idCozinha));
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
